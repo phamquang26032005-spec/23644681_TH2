@@ -1,26 +1,28 @@
-// src/components/Watermark.tsx
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { STUDENT, examStamp, VARIANT } from '../constants/student';
 
 export default function Watermark() {
-    return (
-        <View style={[styles.container, VARIANT.watermarkAtTop ? styles.top : styles.bottom]}>
-            <Text style={styles.text}>
-                TH2 · {STUDENT.mssv} · {STUDENT.hoTen} · #{examStamp()}
-            </Text>
-        </View>
-    );
+  return (
+    <View style={styles.container} pointerEvents="none">
+      <Text style={styles.text}>PHẠM VĂN QUANG - 23644681 - TH2</Text>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        backgroundColor: '#BFDBFE',
-        paddingVertical: 4,
-        alignItems: 'center',
-        width: '100%',
-    },
-    top: { position: 'absolute', top: 0, zIndex: 999 },
-    bottom: { position: 'absolute', bottom: 0, zIndex: 999 },
-    text: { fontSize: 12, color: '#1E3A8A', fontWeight: 'bold' }
+  container: {
+    position: 'absolute',
+    top: 40,
+    right: 15,
+    zIndex: 999,
+    backgroundColor: 'rgba(2, 132, 199, 0.15)',
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: 6,
+  },
+  text: {
+    fontSize: 11,
+    fontWeight: 'bold',
+    color: '#0369a1',
+  },
 });

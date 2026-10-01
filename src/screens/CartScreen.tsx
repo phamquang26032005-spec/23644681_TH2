@@ -7,7 +7,8 @@ import { useCampusLocation } from '../hooks/useCampusLocation';
 import Watermark from '../components/Watermark';
 
 export default function CartScreen() {
-    const { items, remove, changeQty, totalAmount } = useCartStore();
+    const { items, removeFromCart } = useCartStore();
+    const totalAmount = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
     const { fee } = useCampusLocation(); // Lấy phí từ hook đã tính[cite: 1]
 
     const renderItem = ({ item }: { item: any }) => (
@@ -18,7 +19,7 @@ export default function CartScreen() {
                     <Text style={styles.itemPrice}>x{item.quantity}  {(item.price * item.quantity).toLocaleString('vi-VN')} đ</Text>
                 </View>
             </View>
-            <TouchableOpacity style={styles.delBtn} onPress={() => remove(item.id)}>
+            <TouchableOpacity style={styles.delBtn} onPress={() => removeFromCart(item.id)}>
                 <Text style={styles.delText}>🗑</Text>
             </TouchableOpacity>
         </View>
@@ -46,7 +47,7 @@ export default function CartScreen() {
             </View>
 
             <View style={styles.totalRow}>
-                <Text style={styles.totalText}>Tổng hàng: {totalAmount().toLocaleString('vi-VN')} đ</Text>
+                <Text style={styles.totalText}>Tổng hàng: {totalAmount.toLocaleString('vi-VN')} đ</Text>
             </View>
         </View>
     );
